@@ -31,7 +31,9 @@ I am [Doug Finke](https://github.com/dfinke), a PowerShell expert, AI developer,
 Follow the project's progress and stay in touch by following me on 
 - [X](https://x.com/dfinke)
 - [YouTube](https://www.youtube.com/@DougFinke)
-- [LinkedIn](https://www.linkedin.com/in/douglasfinke/), and by watching the repo.
+- [LinkedIn](https://www.linkedin.com/in/douglasfinke/)
+
+and by watching the repo.
 
 I'm excited to see how `PowerShell AI Assistant` will revolutionize your scripting and automation tasks.
 
