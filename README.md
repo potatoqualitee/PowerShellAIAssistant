@@ -1,3 +1,25 @@
+<p align="center">  
+  <!-- <a href="https://twitter.com/dfinke">
+    <img src="https://img.shields.io/badge/Twitter-@dfinke-blue.svg?logo=twitter&style=flat-square">
+  </a> -->
+  <!-- https://img.shields.io/twitter/follow/dfinke.svg?style=social&label=Follow%20%40dfinke -->
+  <a href="https://x.com/dfinke">
+    <img src="https://img.shields.io/twitter/follow/dfinke.svg?style=social&label=Follow%20%40dfinke">
+  </a>
+  <a href="https://youtube.com/@dougfinke">
+    <img src="https://img.shields.io/youtube/channel/subscribers/UCP47ZkO5EDkoI2sr-3P4ShQ">
+  </a>  
+  <!-- <a href="https://www.powershellgallery.com/packages/PowerShellAIAssistant/">
+    <img src="https://img.shields.io/powershellgallery/v/PowerShellAIAssistant.svg">
+  </a>  
+  <a href="https://www.powershellgallery.com/packages/PowerShellAIAssistant/">
+    <img src="https://img.shields.io/powershellgallery/dt/PowerShellAIAssistant.svg">
+  </a> -->
+  <!-- <a href="https://github.com/dfinke/PSAdvantage/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/License-Apache-orange.svg?logo=openbsd&style=flat-square">
+  </a> -->
+</p> 
+
 # PowerShell AI Assistant
 
 Welcome to `PowerShell AI Assistant`, a module designed for seamless integration with `OpenAI Assistant` APIs, providing a rich set of functionalities to empower your PowerShell scripts with the latest AI technologies. Dive into an enhanced scripting experience by leveraging an AI-powered assistant in your console.
