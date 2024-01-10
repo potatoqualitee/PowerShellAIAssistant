@@ -17,6 +17,9 @@
   </a> -->
 </p> 
 
+> **Note**: If you have `PowerShellAI` you can safely `PowerShellAIAssistant` using `-AllowClobber`
+
+>`Install-Module PowerShellAIAssistant -AllowClobber`
 
 Example code accomplishing common tasks with the [OpenAI API](https://platform.openai.com/docs/introduction). To run these [examples](./examples/)
 
