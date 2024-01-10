@@ -18,8 +18,9 @@
 </p> 
 
 
-Example code accomplishing common tasks with the [OpenAI API](https://platform.openai.com/docs/introduction). To run these examples
+Example code accomplishing common tasks with the [OpenAI API](https://platform.openai.com/docs/introduction). To run these [examples](./examples/)
 
+## Setup
 First, create an [OpenAI account](https://platform.openai.com/signup) or [sign in](https://platform.openai.com/login). Next, navigate to the [API key page](https://platform.openai.com/account/api-keys) and "Create new secret key", optionally naming the key. Make sure to save this somewhere safe and do not share it with anyone.
 
 Run the [Sanity-Check](/examples/Sanity-Check.ps1) script first. You need the API key to run it. It creates and deletes a assistant on the backend. If it works, you're good to go.

@@ -2,6 +2,19 @@
 # cheap intelligence-on-demand brings to the table we are going to
 # see a burst of really exciting and novel things ~ Ethan Mollick
 
+<#
+This script is an simple example of how to use the OpenAI PowerShell module to create a simple tutor.
+
+Additional functions can be built to further simplify the process.
+
+You can experiment with different questions and instructions.
+
+Try:
+------
+$Instructions = 'You are a personal math tutor. When asked a math question, write and run code to answer the question.'
+
+$question = 'I need to solve the equation `3x + 11 = 14`. Can you help me?'
+#>
 param(
     $question = 'What is the capital of France?'
 )
@@ -36,4 +49,4 @@ $steps | ConvertTo-Json -Depth 10
 #>
 
 # Delete the assistant
-$result = Remove-OAIAssistant $assistant.Id
+$null = Remove-OAIAssistant $assistant.Id
