@@ -6,6 +6,7 @@ on:
       - ".github/workflows/docs.yml"
       - "docs/**"
       - "mkdocs.yml"
+      - "examples/**"
 
     branches:
       - main
