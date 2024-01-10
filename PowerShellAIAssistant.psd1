@@ -79,7 +79,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
             Category   = "PowerShell AI Assistant Module"
             Tags       = @("PowerShell", "GPT", "OpenAI","Assistant")
             ProjectUri = "https://github.com/dfinke/PowerShellAIAssistant"
-            LicenseUri = "https://github.com/dfinke/PowerShellAIAssistant/blob/main/LICENSE.txt"
+            LicenseUri = "https://github.com/dfinke/PowerShellAIAssistant/blob/main/LICENSE"
         }
     }
 }
