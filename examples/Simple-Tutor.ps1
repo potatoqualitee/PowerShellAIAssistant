@@ -19,7 +19,7 @@ param(
     $question = 'What is the capital of France?'
 )
 
-$assistant = New-OAIAssistant -Instructions 'You are an expert in geography, be helpful and concise.' -Model 
+$assistant = New-OAIAssistant -Instructions 'You are an expert in geography, be helpful and concise.'
 
 $thread = New-OAIThread
 
