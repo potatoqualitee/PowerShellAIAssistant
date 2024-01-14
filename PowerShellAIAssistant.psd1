@@ -1,6 +1,6 @@
 @{
     RootModule        = 'PowerShellAIAssistant.psm1'
-    ModuleVersion     = '0.1.0'
+    ModuleVersion     = '0.1.1'
     GUID              = '23da7dfe-f77e-4ca6-8b69-5e69603a73ca'
     Author            = 'Douglas Finke'
     CompanyName       = 'Doug Finke'
@@ -45,6 +45,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Get-OAIThreadItem'
         'Get-OpenAISpecDescriptions'
         'Import-OAIAssistant'
+        'Invoke-OAIChat'
         'Invoke-OAIUploadFile'
         'New-OAIAssistant'
         'New-OAIMessage'
@@ -72,6 +73,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'noaia'
         'noait'
         'uoaia'
+        'ai'
     )
 
     PrivateData       = @{

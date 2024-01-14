@@ -9,5 +9,6 @@ Describe 'Test aliases exist' -Tag AliasesExist {
         Get-Alias noaia -ErrorAction SilentlyContinue | Should -Not -BeNullOrEmpty
         Get-Alias noait -ErrorAction SilentlyContinue | Should -Not -BeNullOrEmpty
         Get-Alias uoaia -ErrorAction SilentlyContinue | Should -Not -BeNullOrEmpty
+        Get-Alias ai -ErrorAction SilentlyContinue | Should -Not -BeNullOrEmpty
     }
 }
