@@ -22,7 +22,7 @@ function Wait-OAIOnRun {
         $Thread
     )
 
-    Write-Host -ForegroundColor Yellow "[$(Get-Date)] Waiting for run to complete..."
+    Write-Verbose "[$(Get-Date)] Waiting for run to complete..."
     while ($Run.status -eq 'queued' -or $Run.status -eq 'in_progress') {
         $Run = Get-OAIRunItem -ThreadId $Thread.id -RunId $Run.id
         Start-Sleep -Seconds 0.5
