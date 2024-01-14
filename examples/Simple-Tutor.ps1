@@ -49,4 +49,4 @@ $steps | ConvertTo-Json -Depth 10
 #>
 
 # Delete the assistant
-$null = Remove-OAIAssistant $assistant.Id
+#$null = Remove-OAIAssistant $assistant.Id
