@@ -27,6 +27,7 @@
 . $PSScriptRoot/Public/Get-OAIThreadItem.ps1
 . $PSScriptRoot/Public/Get-OpenAISpecDescriptions.ps1
 . $PSScriptRoot/Public/Import-OAIAssistant.ps1
+. $PSScriptRoot/Public/Invoke-OAIChat.ps1
 . $PSScriptRoot/Public/Invoke-OAIUploadFile.ps1
 . $PSScriptRoot/Public/New-OAIAssistant.ps1
 . $PSScriptRoot/Public/New-OAIMessage.ps1
@@ -60,3 +61,4 @@ Set-Alias roaia Remove-OAIAssistant
 Set-Alias noaia New-OAIAssistant
 Set-Alias noait New-OAIThread
 Set-Alias uoaia Update-OAIAssistant
+Set-Alias ai Invoke-OAIChat
