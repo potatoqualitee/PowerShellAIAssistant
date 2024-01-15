@@ -18,6 +18,9 @@ Invokes the AI chat assistant with the specified user input and returns the assi
 .EXAMPLE
 'show even numbers' | ai -Instructions 'use powershell, just code, no explanation'
 
+.EXAMPLE
+git status | ai 'write a detailed commit message'
+
 .INPUTS
 System.String
 
@@ -30,9 +33,9 @@ This function requires the New-OAIAssistant, New-OAIThreadQuery, Wait-OAIOnRun, 
 function Invoke-OAIChat {
     [CmdletBinding()]
     param(
+        $Instructions,
         [Parameter(ValueFromPipeline)]
         $UserInput,
-        $Instructions,
         [ValidateSet('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-3.5-turbo-1106')]
         $model = 'gpt-3.5-turbo'
     )
@@ -44,23 +47,28 @@ function Invoke-OAIChat {
 
         $assistantParams["name"] = "PowerShellAIAssistant-$ts"
 
-        if(!$Instructions) {
+        if (!$Instructions) {
             $Instructions = 'You are a helpful assistant. Please answer questions concisely.'
         }
         $assistantParams["instructions"] = $Instructions
         $assistantParams["model"] = $model
 
         $assistant = New-OAIAssistant @assistantParams
+
+        [System.Collections.ArrayList]$lines = @()
     }
 
     Process {
-        $queryResult = New-OAIThreadQuery -UserInput $userInput -Assistant $assistant 
+        $lines += $UserInput                
+    }
+    
+    End {
+        $prompt = ($lines | Out-String).Trim()
+
+        $queryResult = New-OAIThreadQuery -UserInput $prompt -Assistant $assistant 
         $null = Wait-OAIOnRun -Run $queryResult.Run -Thread $queryResult.Thread
         $messages = Get-OAIMessage -ThreadId $queryResult.Thread.Id
         $messages.data[0].content.text.value
-    }
-
-    End {
         $null = Remove-OAIAssistant -Id $assistant.Id
     }
 }
