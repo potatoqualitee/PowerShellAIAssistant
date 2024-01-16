@@ -22,7 +22,6 @@ $assistant = New-OAIAssistant @assistantParams
  $result.run = Wait-OAIOnRun -Run $result.run -Thread $result.thread
  Out-OAIMessages -Messages (Get-OAIMessage -ThreadId $result.thread.id -Order asc -After $result.message.id).data
 
-<#
+
 Remove-OAIFile -id $file.id
 Remove-OAIAssistant -Id $assistant.id
-#>
