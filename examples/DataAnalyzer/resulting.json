@@ -1,0 +1,53 @@
+{
+    "Thread": {
+        "id": "thread_mZBpxhkiT4F3cTSVAkoSgTh3",
+        "object": "thread",
+        "created_at": 1705450220,
+        "metadata": {}
+    },
+    "Run": {
+        "id": "run_ANzG4i96yu3qWhYlbQLQf4Hd",
+        "object": "thread.run",
+        "created_at": 1705450220,
+        "assistant_id": "asst_ZQ3z5WoxroW8Twwc9qguNrsu",
+        "thread_id": "thread_mZBpxhkiT4F3cTSVAkoSgTh3",
+        "status": "completed",
+        "started_at": 1705450220,
+        "expires_at": null,
+        "cancelled_at": null,
+        "failed_at": null,
+        "completed_at": 1705450237,
+        "last_error": null,
+        "model": "gpt-3.5-turbo",
+        "instructions": "You are a helpful data analyst. When asked a question, you will parse the attached  file to provide the requested analysis.",
+        "tools": [
+            {
+                "type": "code_interpreter"
+            }
+        ],
+        "file_ids": [
+            "file-hwYHx3XrHILq0fbpQrxnPXrQ"
+        ],
+        "metadata": {}
+    },
+    "Message": {
+        "id": "msg_0v1JlnCp5BCg6r4qwnKptpBD",
+        "object": "thread.message",
+        "created_at": 1705450220,
+        "thread_id": "thread_mZBpxhkiT4F3cTSVAkoSgTh3",
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": {
+                    "value": "Need a bar chart for these \"Units\" sold by \"Region\"",
+                    "annotations": []
+                }
+            }
+        ],
+        "file_ids": [],
+        "assistant_id": null,
+        "run_id": null,
+        "metadata": {}
+    }
+}

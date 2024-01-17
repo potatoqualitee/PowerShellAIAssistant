@@ -1,0 +1,94 @@
+{
+    "object": "list",
+    "data": [
+        {
+            "id": "msg_abChxriAtnbJu2VQXAAirlfY",
+            "object": "thread.message",
+            "created_at": 1705450237,
+            "thread_id": "thread_mZBpxhkiT4F3cTSVAkoSgTh3",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "image_file",
+                    "image_file": {
+                        "file_id": "file-iDjXtFJbmln5Dh2hsAzt3bzT"
+                    }
+                },
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Here is the bar chart showing the number of units sold by region.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "file_ids": [],
+            "assistant_id": "asst_ZQ3z5WoxroW8Twwc9qguNrsu",
+            "run_id": "run_ANzG4i96yu3qWhYlbQLQf4Hd",
+            "metadata": {}
+        },
+        {
+            "id": "msg_2Do4sKS0QtQ20dQhetKPvdHW",
+            "object": "thread.message",
+            "created_at": 1705450226,
+            "thread_id": "thread_mZBpxhkiT4F3cTSVAkoSgTh3",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "The data contains information about the region, state, units sold, and price for a certain product. Now let's create a bar chart to visualize the number of units sold by region.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "file_ids": [],
+            "assistant_id": "asst_ZQ3z5WoxroW8Twwc9qguNrsu",
+            "run_id": "run_ANzG4i96yu3qWhYlbQLQf4Hd",
+            "metadata": {}
+        },
+        {
+            "id": "msg_x7KJndrgqSvu8oNExVLwmCwK",
+            "object": "thread.message",
+            "created_at": 1705450221,
+            "thread_id": "thread_mZBpxhkiT4F3cTSVAkoSgTh3",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Sure! Let's start by loading the data from the file and taking a look at its contents.",
+                        "annotations": []
+                    }
+                }
+            ],
+            "file_ids": [],
+            "assistant_id": "asst_ZQ3z5WoxroW8Twwc9qguNrsu",
+            "run_id": "run_ANzG4i96yu3qWhYlbQLQf4Hd",
+            "metadata": {}
+        },
+        {
+            "id": "msg_0v1JlnCp5BCg6r4qwnKptpBD",
+            "object": "thread.message",
+            "created_at": 1705450220,
+            "thread_id": "thread_mZBpxhkiT4F3cTSVAkoSgTh3",
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": {
+                        "value": "Need a bar chart for these \"Units\" sold by \"Region\"",
+                        "annotations": []
+                    }
+                }
+            ],
+            "file_ids": [],
+            "assistant_id": null,
+            "run_id": null,
+            "metadata": {}
+        }
+    ],
+    "first_id": "msg_abChxriAtnbJu2VQXAAirlfY",
+    "last_id": "msg_0v1JlnCp5BCg6r4qwnKptpBD",
+    "has_more": false
+}
