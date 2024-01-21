@@ -1,6 +1,7 @@
 # v0.1.3
 
-- Added `ConvertFrom-OAIAssistant` - Converts an AI assistant object to Json.   
+- Added `ConvertFrom-OAIAssistant` - Converts an AI assistant object to JSON.
+- Added `ConvertTo-OAIAssistant` - Converts a JSON string to an AI assistant object.
 
 # v0.1.2
 
