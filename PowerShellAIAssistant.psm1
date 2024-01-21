@@ -6,6 +6,7 @@
 . $PSScriptRoot/Public/Clear-OAIAssistants.ps1
 . $PSScriptRoot/Public/Clear-OAIFiles.ps1
 . $PSScriptRoot/Public/ConvertFrom-FunctionDefinition.ps1
+. $PSScriptRoot/Public/ConvertFrom-OAIAssistant
 . $PSScriptRoot/Public/ConvertTo-OpenAIFunctionSpec.ps1
 . $PSScriptRoot/Public/ConvertTo-OpenAIFunctionSpecDataType.ps1
 . $PSScriptRoot/Public/Copy-OAIAssistant.ps1
@@ -47,6 +48,7 @@
 . $PSScriptRoot/Public/Test-OAIAssistantId.ps1
 . $PSScriptRoot/Public/Update-OAIAssistant.ps1
 . $PSScriptRoot/Public/Wait-OAIOnRun.ps1
+. $PSScriptRoot/Public/ConvertTo-OAIAssistant.ps1
 
 $script:baseUrl = "https://api.openai.com/v1"
 
