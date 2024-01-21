@@ -66,6 +66,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Test-OAIAssistantId'
         'Update-OAIAssistant'
         'Wait-OAIOnRun'
+        'ConvertTo-OAIAssistant'
     )
 
     AliasesToExport   = @(

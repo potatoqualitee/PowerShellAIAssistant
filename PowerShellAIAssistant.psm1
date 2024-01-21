@@ -48,6 +48,7 @@
 . $PSScriptRoot/Public/Test-OAIAssistantId.ps1
 . $PSScriptRoot/Public/Update-OAIAssistant.ps1
 . $PSScriptRoot/Public/Wait-OAIOnRun.ps1
+. $PSScriptRoot/Public/ConvertTo-OAIAssistant.ps1
 
 $script:baseUrl = "https://api.openai.com/v1"
 
