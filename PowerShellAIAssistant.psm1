@@ -6,6 +6,7 @@
 . $PSScriptRoot/Public/Clear-OAIAssistants.ps1
 . $PSScriptRoot/Public/Clear-OAIFiles.ps1
 . $PSScriptRoot/Public/ConvertFrom-FunctionDefinition.ps1
+. $PSScriptRoot/Public/ConvertFrom-OAIAssistant
 . $PSScriptRoot/Public/ConvertTo-OpenAIFunctionSpec.ps1
 . $PSScriptRoot/Public/ConvertTo-OpenAIFunctionSpecDataType.ps1
 . $PSScriptRoot/Public/Copy-OAIAssistant.ps1

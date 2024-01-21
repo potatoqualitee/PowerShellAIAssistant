@@ -1,6 +1,6 @@
 @{
     RootModule        = 'PowerShellAIAssistant.psm1'
-    ModuleVersion     = '0.1.2'
+    ModuleVersion     = '0.1.3'
     GUID              = '23da7dfe-f77e-4ca6-8b69-5e69603a73ca'
     Author            = 'Douglas Finke'
     CompanyName       = 'Doug Finke'
@@ -24,6 +24,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Clear-OAIAssistants'
         'Clear-OAIFiles'
         'ConvertFrom-FunctionDefinition'
+        'ConvertFrom-OAIAssistant'
         'ConvertTo-OpenAIFunctionSpec'
         'ConvertTo-OpenAIFunctionSpecDataType'
         'Copy-OAIAssistant'
@@ -79,7 +80,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
     PrivateData       = @{
         PSData = @{
             Category   = "PowerShell AI Assistant Module"
-            Tags       = @("PowerShell", "GPT", "OpenAI","Assistant")
+            Tags       = @("PowerShell", "GPT", "OpenAI", "Assistant")
             ProjectUri = "https://github.com/dfinke/PowerShellAIAssistant"
             LicenseUri = "https://github.com/dfinke/PowerShellAIAssistant/blob/main/LICENSE"
         }

@@ -1,3 +1,7 @@
+# v0.1.3
+
+- Added `ConvertFrom-OAIAssistant` - Converts an AI assistant object to Json.   
+
 # v0.1.2
 
 - Updated `Invoke-OAIChat` to improve processing input prompt
