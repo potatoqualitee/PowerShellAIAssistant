@@ -9,7 +9,7 @@ The Invoke-OAIChat function is used to interact with an AI chat assistant. It ta
 Specifies the user input to be processed by the AI chat assistant.
 
 .PARAMETER Model
-Specifies the model to be used by the AI chat assistant. Valid values are 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', and 'gpt-3.5-turbo-1106'. The default value is 'gpt-3.5-turbo'.
+Specifies the model to be used by the AI chat assistant. Valid values are 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', and 'gpt-3.5-turbo-1106'. The default value is 'gpt-3.5-turbo'.
 
 .EXAMPLE
 Invoke-OAIChat -UserInput "What is the weather today?"
@@ -36,7 +36,7 @@ function Invoke-OAIChat {
         $Instructions,
         [Parameter(ValueFromPipeline)]
         $UserInput,
-        [ValidateSet('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-3.5-turbo-1106')]
+        [ValidateSet('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', 'gpt-3.5-turbo-1106')]        
         $model = 'gpt-3.5-turbo'
     )
 
