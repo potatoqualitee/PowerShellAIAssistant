@@ -1,3 +1,7 @@
+# v0.1.5
+
+- Added new OpenAI model `gpt-4-turbo-preview`
+
 # v0.1.4
 
 - Fix dot source of file. Add .ps1
