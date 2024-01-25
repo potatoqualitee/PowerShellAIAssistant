@@ -23,6 +23,6 @@ Describe 'New-OAIAssistant' -Tag New-OAIAssistant {
         $actual.Parameters.Keys.Contains('model') | Should -Be $true
         $validateSet = $actual.Parameters.model.Attributes | Where-Object { $_ -is [System.Management.Automation.ValidateSetAttribute] }
         $validateSet | Should -Not -BeNullOrEmpty
-        $validateSet[0].ValidValues | Should -Be @('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-3.5-turbo-1106')
+        $validateSet[0].ValidValues | Should -Be @('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', 'gpt-3.5-turbo-1106')
     }
 }

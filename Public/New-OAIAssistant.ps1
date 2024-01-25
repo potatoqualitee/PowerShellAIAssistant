@@ -18,7 +18,7 @@ The description of the assistant.
 The tools used by the assistant.
 
 .PARAMETER Model
-The model to be used by the assistant. Valid values are 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', and 'gpt-3.5-turbo-1106'. The default value is 'gpt-3.5-turbo'.
+The model to be used by the assistant. Valid values are 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', and 'gpt-3.5-turbo-1106'. The default value is 'gpt-3.5-turbo'.
 
 .PARAMETER FileIds
 The file IDs associated with the assistant.
@@ -37,7 +37,7 @@ function New-OAIAssistant {
         $Instructions,
         $Description,
         $Tools,
-        [ValidateSet('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-3.5-turbo-1106')]
+        [ValidateSet('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', 'gpt-3.5-turbo-1106')]
         $Model = 'gpt-3.5-turbo',
         [Alias('file_ids')]
         $FileIds,
