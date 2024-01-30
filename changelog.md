@@ -1,3 +1,5 @@
+# v0.1.6
+
 # v0.1.5
 
 - Added new OpenAI model `gpt-4-turbo-preview`
