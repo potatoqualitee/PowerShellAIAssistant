@@ -1,6 +1,6 @@
 @{
     RootModule        = 'PowerShellAIAssistant.psm1'
-    ModuleVersion     = '0.1.5'
+    ModuleVersion     = '0.1.6'
     GUID              = '23da7dfe-f77e-4ca6-8b69-5e69603a73ca'
     Author            = 'Douglas Finke'
     CompanyName       = 'Doug Finke'
@@ -67,6 +67,8 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Update-OAIAssistant'
         'Wait-OAIOnRun'
         'ConvertTo-OAIAssistant'
+        'Invoke-SimpleQuestion'
+        'Invoke-QuickChat'
     )
 
     AliasesToExport   = @(

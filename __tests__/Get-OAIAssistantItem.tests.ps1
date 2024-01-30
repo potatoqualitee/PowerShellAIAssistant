@@ -9,7 +9,6 @@ Describe 'Get-OAIAssistantItem' -Tag Get-OAIAssistantItem {
         $actual | Should -Not -BeNullOrEmpty
         
         $actual.Parameters.Keys.Contains('AssistantId') | Should -Be $true
-        # $actual.Parameters.AssistantId.Attributes.Mandatory | Should -Be $true
 
         $actual.Parameters.AssistantId.Attributes.ValueFromPipelineByPropertyName | Should -Be $true
         $actual.Parameters.AssistantId.Aliases.Count | Should -Be 1
