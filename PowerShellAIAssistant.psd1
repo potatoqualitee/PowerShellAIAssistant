@@ -68,6 +68,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Wait-OAIOnRun'
         'ConvertTo-OAIAssistant'
         'Invoke-SimpleQuestion'
+        'Invoke-QuickChat'
     )
 
     AliasesToExport   = @(
