@@ -1,3 +1,18 @@
+<#
+.SYNOPSIS
+    Invokes a quick chat session with an AI assistant.
+
+.DESCRIPTION
+    This function allows you to interact with an AI assistant by asking questions and receiving responses in a chat-like manner.
+
+.PARAMETER AssistantId
+    Specifies the ID of the assistant to interact with.
+
+.EXAMPLE
+    $assistant = New-OAIAssistant -Name 'Math Tutor'
+    Invoke-QuickChat $assistant.id
+
+#>
 function Invoke-QuickChat {
     [CmdletBinding()]
     param(
