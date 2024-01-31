@@ -34,6 +34,10 @@ Import-Module $PSScriptRoot\rag-cli.psm1 -Force
 .EXAMPLE
     # Example 4: Clear the assistant and configuration files
     Invoke-RAG -Clear
+
+.EXAMPLE
+    # Example 5: Chat with a specific assistant
+    rag -AssistantId "your-assistant-id" -Chat
 #>
 function Invoke-RAG {
     [alias("rag")]
@@ -42,12 +46,15 @@ function Invoke-RAG {
         [Parameter(ValueFromPipelineByPropertyName)]
         [Alias('FullName')]
         $Path,
-        $AssistantId,
+        # $AssistantId,
         [Switch]$Chat,
         [Switch]$Clear            
     )
 
     begin {
+        # force it to null. revisit this later. this approach can be better generalized.
+        # does not need to be tied to the RAG assistant.
+        $AssistantId = $null
         $files = @()
     }
 
