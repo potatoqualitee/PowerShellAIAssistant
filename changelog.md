@@ -1,3 +1,7 @@
+# v0.1.6
+
+- Added `Invoke-SimpleQuestion` and `Invoke-QuickChat`
+
 # v0.1.5
 
 - Added new OpenAI model `gpt-4-turbo-preview`
