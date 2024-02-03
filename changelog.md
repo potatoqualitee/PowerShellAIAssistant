@@ -1,3 +1,10 @@
+# v0.1.7
+
+Thank you to [Philosoraptor](https://github.com/asheroto)
+
+- Organized the README, and fix API key instructions
+- Fixed the API Key variable in [examples/Sanity-Check.ps1](/examples/Sanity-Check.ps1)
+
 # v0.1.6
 
 - Added `Invoke-SimpleQuestion` and `Invoke-QuickChat`
