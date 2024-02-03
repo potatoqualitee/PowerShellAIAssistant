@@ -26,7 +26,8 @@ Welcome to `PowerShell AI Assistant`, a module designed for seamless integration
 
 ## Requirements
 
-> [!IMPORTANT] > `Get-OAIAssistant` requires PowerShell 7.4 or higher. It needs the `AllowInsecureRedirect` parameter, a workaround is being investigated.
+> [!IMPORTANT]
+> `Get-OAIAssistant` requires PowerShell 7.4 or higher. It needs the `AllowInsecureRedirect` parameter, a workaround is being investigated.
 
 If you don't have PowerShell 7.4 or higher, you can use CodeSpaces to run the example. Click the button below to open CodeSpaces.
 
