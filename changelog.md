@@ -1,3 +1,7 @@
+# v0.1.8
+
+- Add another model for `Update-OAIAssistant` - `gpt-4-turbo-preview`
+
 # v0.1.7
 
 Thank you to [Philosoraptor](https://github.com/asheroto)
