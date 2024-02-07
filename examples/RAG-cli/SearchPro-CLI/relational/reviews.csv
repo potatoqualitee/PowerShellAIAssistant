@@ -1,0 +1,6 @@
+ReviewID,ProductID,CustomerID,Rating,Comment
+1,1,1,5,Great product, fast delivery
+2,3,2,4,Good quality, easy to use
+3,2,3,3,Not bad, but a bit expensive
+4,4,4,2,Poor design, not comfortable
+5,5,5,1,Defective, does not work
