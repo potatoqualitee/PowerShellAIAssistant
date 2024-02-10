@@ -1,3 +1,7 @@
+# v0.1.9
+
+- Enable Azure OpenAI Assistants to be used with the module
+
 # v0.1.8
 
 - Add another model for `Update-OAIAssistant` - `gpt-4-turbo-preview`
