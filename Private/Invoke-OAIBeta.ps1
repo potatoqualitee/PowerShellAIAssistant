@@ -42,8 +42,14 @@ function Invoke-OAIBeta {
         $OutFile,
         [Switch]$UseInsecureRedirect,
         [Switch]$NotOpenAIBeta        
-    )        
+    )
+
+    $OAIProvider = Get-OAIProvider
+    $AzOAISecrets = Get-AzOAISecrets
     
+    $OAIProvider = Get-OAIProvider
+    $AzOAISecrets = Get-AzOAISecrets
+
     if ($NotOpenAIBeta) {
         $headers.Remove('OpenAI-Beta')
     }
@@ -60,7 +66,11 @@ function Invoke-OAIBeta {
             $params['Body'] = $Body
         }
         else {
-            $params['Body'] = $Body | ConvertTo-Json -Depth 10
+            if ($OAIProvider -eq 'AzureOpenAI' ) {
+                $Body.model = $AzOAISecrets.deploymentName                
+            }
+
+            $params['Body'] = $Body | ConvertTo-Json -Depth 10            
         }
     }
 
@@ -68,11 +78,34 @@ function Invoke-OAIBeta {
         $params['OutFile'] = $OutFile
     }
 
-    try {
-        if ($PSVersionTable.PSVersion -ge [Version]'7.4.0') {
-            $params['AllowInsecureRedirect'] = $UseInsecureRedirect
-        }
+    if ($PSVersionTable.PSVersion -ge [Version]'7.4.0' -and $OAIProvider -eq 'OpenAI') {
+        $params['AllowInsecureRedirect'] = $UseInsecureRedirect
+    }
 
+    if ($PSVersionTable.PSVersion -ge [Version]'7.4.0' -and $OAIProvider -eq 'OpenAI') {
+        $params['AllowInsecureRedirect'] = $UseInsecureRedirect
+    }
+
+    if ($OAIProvider -eq 'AzureOpenAI' ) {
+        
+        $apiUri = $AzOAISecrets.apiUri
+        $apiVersion = $AzOAISecrets.apiVersion
+        
+        $oldUri = $params['Uri']
+
+        $updatedUri = $oldUri.Replace($Script:baseUrl, '')        
+        $updatedUri = $updatedUri -replace '/$', ''
+
+        $newUri = $apiUri + '/openai' + $updatedUri + "?api-version=$($apiVersion)"
+        
+        #$newUri = $oldUri.Replace($Script:baseUrl, $apiUri)
+        #$uri = $baseUrl + "/openai/assistants?api-version=$($api_version)"
+
+        $params['Uri'] = $newUri
+        $headers['api-key'] = $AzOAISecrets.apiKey
+    }
+
+    try {
         Invoke-RestMethod @params
     } 
     catch {
@@ -82,8 +115,9 @@ function Invoke-OAIBeta {
             $targetError = $targetError.error.message
         } 
         else {
-            $targetError = "[{0}] - {1}" -f $Uri, $message
-        }
+            $targetError = "[{0}] - {1}" -f $Uri, $mes
+            $targetError = $targetError.error.message
+        } 
 
         Write-Error $targetError
     }
