@@ -53,6 +53,8 @@
 . $PSScriptRoot/Public/Invoke-QuickChat.ps1
 . $PSScriptRoot/Public/Set-AzOAISecrets.ps1
 . $PSScriptRoot/Public/Get-AzOAISecrets.ps1
+. $PSScriptRoot/Public/Set-OAIProvider.ps1
+. $PSScriptRoot/Public/Get-OAIProvider.ps1
 
 $script:baseUrl = "https://api.openai.com/v1"
 
