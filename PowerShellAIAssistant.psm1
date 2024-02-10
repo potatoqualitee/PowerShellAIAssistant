@@ -56,6 +56,14 @@
 . $PSScriptRoot/Public/Set-OAIProvider.ps1
 . $PSScriptRoot/Public/Get-OAIProvider.ps1
 
+$script:OAIProvider = 'OpenAI'
+$script:AzOAISecrets = @{
+    apiURI         = $null
+    apiKEY         = $null
+    apiVersion     = $null
+    deploymentName = $null
+}
+
 $script:baseUrl = "https://api.openai.com/v1"
 
 $script:headers = @{

@@ -1,10 +1,3 @@
-$script:AzOAISecrets = @{
-    apiURI         = $null
-    apiKEY         = $null
-    apiVersion     = $null
-    deploymentName = $null
-}
-
 function Set-AzOAISecrets {
     [CmdletBinding()]
     param (

@@ -1,5 +1,3 @@
-$script:OAIProvider = 'OpenAI'
-
 function Set-OAIProvider {
     [CmdletBinding()]
     param(
