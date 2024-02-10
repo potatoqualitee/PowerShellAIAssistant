@@ -51,6 +51,7 @@
 . $PSScriptRoot/Public/ConvertTo-OAIAssistant.ps1
 . $PSScriptRoot/Public/Invoke-SimpleQuestion.ps1
 . $PSScriptRoot/Public/Invoke-QuickChat.ps1
+. $PSScriptRoot/Public/Set-AzOAISecrets.ps1
 
 $script:baseUrl = "https://api.openai.com/v1"
 
