@@ -68,3 +68,7 @@ System.Boolean
 function Test-IsUnitTestingEnabled {
     $script:EnableUnitTesting
 }
+
+function Get-UnitTestingData {
+    $script:InvokeOAIUnitTestingData
+}

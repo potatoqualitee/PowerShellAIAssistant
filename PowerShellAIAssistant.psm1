@@ -54,6 +54,7 @@
 . $PSScriptRoot/Public/UnitTesting.ps1
 
 $script:EnableUnitTesting = $false
+$script:InvokeOAIUnitTestingData = $null
 
 $script:baseUrl = "https://api.openai.com/v1"
 
