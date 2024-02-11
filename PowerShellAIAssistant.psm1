@@ -51,6 +51,9 @@
 . $PSScriptRoot/Public/ConvertTo-OAIAssistant.ps1
 . $PSScriptRoot/Public/Invoke-SimpleQuestion.ps1
 . $PSScriptRoot/Public/Invoke-QuickChat.ps1
+. $PSScriptRoot/Public/UnitTesting.ps1
+
+$script:EnableUnitTesting = $false
 
 $script:baseUrl = "https://api.openai.com/v1"
 
