@@ -72,6 +72,21 @@ function Invoke-OAIBeta {
         $params['AllowInsecureRedirect'] = $UseInsecureRedirect
     }
 
+    if (Test-IsUnitTestingEnabled) {
+        Write-Host "Data saved. Use Get-UnitTestingData to retrieve the data."
+        $script:InvokeOAIUnitTestingData = @{
+            Uri                 = $Uri
+            Method              = $Method
+            Headers             = $headers
+            Body                = $Body
+            ContentType         = $ContentType
+            OutFile             = $OutFile
+            UseInsecureRedirect = $UseInsecureRedirect
+            NotOpenAIBeta       = $NotOpenAIBeta
+        }        
+        return
+    }
+
     try {
         Invoke-RestMethod @params
     } 
