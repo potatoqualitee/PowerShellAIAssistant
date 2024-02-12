@@ -16,19 +16,22 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
                 [hashtable]$ExpectedUnitTestingData
             )
 
-            $UnitTestingData['Method'] | Should -BeExactly $ExpectedUnitTestingData['Method']
-            $UnitTestingData['Uri'] | Should -BeExactly $ExpectedUnitTestingData['Uri']
-            $UnitTestingData['OutFile'] | Should -BeExactly $ExpectedUnitTestingData['OutFile']
-            $UnitTestingData['ContentType'] | Should -BeExactly $ExpectedUnitTestingData['ContentType']            
-
-            $UnitTestingData['Body'] | Should -MatchHashtable $ExpectedUnitTestingData['Body']
-            
-            $resp = $UnitTestingData['Headers']            
-            $resp.Authorization = $resp.Authorization -replace "Bearer.*", "Bearer " # Do not check the actual token
-            $resp | Should -MatchHashtable $ExpectedUnitTestingData['Headers']
-
-            $UnitTestingData['NotOpenAIBeta'] | Should -Be $ExpectedUnitTestingData['NotOpenAIBeta']
-            $UnitTestingData['UseInsecureRedirect'] | Should -Be $ExpectedUnitTestingData['UseInsecureRedirect']
+            foreach ($entry in $ExpectedUnitTestingData.GetEnumerator()) {
+                if ($entry.Value -is [hashtable]) {
+                    if ($entry.Key -eq 'Headers') {
+                        $resp = $UnitTestingData[$entry.Key]
+                        # Do not check the actual token
+                        $resp.Authorization = $resp.Authorization -replace "Bearer.*", "Bearer " 
+                        $UnitTestingData[$entry.Key] | Should -MatchHashtable $entry.Value
+                    }
+                    else {
+                        $UnitTestingData[$entry.Key] | Should -MatchHashtable $entry.Value
+                    }
+                    continue
+                }
+                
+                $UnitTestingData[$entry.Key] | Should -BeExactly $entry.Value
+            }
         }
     }
 
@@ -58,7 +61,8 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
             Headers             = $expectedHeaders
 
             NotOpenAIBeta       = $false
-            UseInsecureRedirect = $false                     
+            UseInsecureRedirect = $false
+            OAIProvider         = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData 
@@ -79,6 +83,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
             UseInsecureRedirect = $true
+            OAIProvider         = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -99,6 +104,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
             UseInsecureRedirect = $false
+            OAIProvider         = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -123,6 +129,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
             UseInsecureRedirect = $false
+            OAIProvider         = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -147,6 +154,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
             UseInsecureRedirect = $false
+            OAIProvider         = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -168,6 +176,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
             UseInsecureRedirect = $false
+            OAIProvider         = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -176,3 +185,4 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
         Test-UnitTestingData $UnitTestingData $ExpectedUnitTestingData
     }
 }
+    
