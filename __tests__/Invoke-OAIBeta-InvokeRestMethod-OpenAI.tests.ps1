@@ -1,4 +1,4 @@
-Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams {
+Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBetaParams-OpenAI {
     BeforeAll {
         Import-Module "$PSScriptRoot/../PowerShellAIAssistant.psd1" -Force
         . "$PSScriptRoot/PesterMatchHashtable.ps1"
