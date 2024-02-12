@@ -54,6 +54,7 @@
 . $PSScriptRoot/Public/UnitTesting.ps1
 . $PSScriptRoot/Public/Get-AzOAISecrets.ps1
 . $PSScriptRoot/Public/Set-AzOAISecrets.ps1
+. $PSScriptRoot/Public/Set-OAIProvider.ps1
 
 $script:EnableUnitTesting = $false
 $script:InvokeOAIUnitTestingData = $null
