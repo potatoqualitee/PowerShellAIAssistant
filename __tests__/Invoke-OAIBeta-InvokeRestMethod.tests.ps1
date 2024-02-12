@@ -1,9 +1,10 @@
-
 Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams {
     BeforeAll {
         Import-Module "$PSScriptRoot/../PowerShellAIAssistant.psd1" -Force
+        . "$PSScriptRoot/PesterMatchHashtable.ps1"
+
         $script:expectedBaseUrl = "https://api.openai.com/v1"
-        $script:expectedHeaders = [Ordered]@{
+        $script:expectedHeaders = @{
             "Content-Type"  = "application/json"
             "OpenAI-Beta"   = "assistants=v1"
             "Authorization" = "Bearer "
@@ -14,16 +15,17 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
                 [hashtable]$UnitTestingData,
                 [hashtable]$ExpectedUnitTestingData
             )
+
             $UnitTestingData['Method'] | Should -BeExactly $ExpectedUnitTestingData['Method']
             $UnitTestingData['Uri'] | Should -BeExactly $ExpectedUnitTestingData['Uri']
             $UnitTestingData['OutFile'] | Should -BeExactly $ExpectedUnitTestingData['OutFile']
-            $UnitTestingData['ContentType'] | Should -BeExactly $ExpectedUnitTestingData['ContentType']
+            $UnitTestingData['ContentType'] | Should -BeExactly $ExpectedUnitTestingData['ContentType']            
+
+            $UnitTestingData['Body'] | Should -MatchHashtable $ExpectedUnitTestingData['Body']
             
-            ($UnitTestingData['Body'] | ConvertTo-Json) | Should -Be ($ExpectedUnitTestingData['Body'] | ConvertTo-Json -Depth 10)
-            
-            $resp = $UnitTestingData['Headers']
+            $resp = $UnitTestingData['Headers']            
             $resp.Authorization = $resp.Authorization -replace "Bearer.*", "Bearer " # Do not check the actual token
-            ($resp | ConvertTo-Json) | Should -Be ($ExpectedUnitTestingData['Headers'] | ConvertTo-Json -Depth 10)
+            $resp | Should -MatchHashtable $ExpectedUnitTestingData['Headers']
 
             $UnitTestingData['NotOpenAIBeta'] | Should -Be $ExpectedUnitTestingData['NotOpenAIBeta']
             $UnitTestingData['UseInsecureRedirect'] | Should -Be $ExpectedUnitTestingData['UseInsecureRedirect']
@@ -47,7 +49,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
             OutFile             = $null
             ContentType         = 'application/json'
             
-            Body                = [Ordered]@{
+            Body                = @{
                 instructions = $null
                 name         = $null
                 model        = "gpt-3.5-turbo"
@@ -173,12 +175,4 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod Params' -Tag Invoke-OAIBetaParams
 
         Test-UnitTestingData $UnitTestingData $ExpectedUnitTestingData
     }
-    <#
-$a=new-OAIAssistant
-$t=New-OAIThread
-$m=New-OAIMessage -ThreadId $t.id -Role user -Content 'what is the capital of France'
-$r=New-OAIRun -ThreadId $t.id -AssistantId $a.id
-$r
-Get-OAIMessage -ThreadId $t.id
-#>    
 }
