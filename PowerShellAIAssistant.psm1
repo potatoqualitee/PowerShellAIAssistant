@@ -59,6 +59,15 @@
 $script:EnableUnitTesting = $false
 $script:InvokeOAIUnitTestingData = $null
 
+$script:OAIProvider = 'OpenAI'
+
+$script:AzOAISecrets = @{
+    apiURI         = $null
+    apiKEY         = $null
+    apiVersion     = $null
+    deploymentName = $null
+}
+
 $script:baseUrl = "https://api.openai.com/v1"
 
 $script:headers = @{
