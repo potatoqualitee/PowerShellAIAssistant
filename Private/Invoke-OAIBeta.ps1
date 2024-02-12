@@ -79,6 +79,7 @@ function Invoke-OAIBeta {
             Method              = $Method
             Headers             = $headers.Clone()
             Body                = $Body
+            OAIProvider         = Get-OAIProvider            
             ContentType         = $ContentType
             OutFile             = $OutFile
             UseInsecureRedirect = $UseInsecureRedirect
