@@ -73,6 +73,8 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Disable-UnitTesting'
         'Get-UnitTestingStatus'
         'Get-UnitTestingData'
+        'Get-AzOAISecrets'
+        'Set-AzOAISecrets'
     )
 
     AliasesToExport   = @(

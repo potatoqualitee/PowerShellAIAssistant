@@ -52,6 +52,8 @@
 . $PSScriptRoot/Public/Invoke-SimpleQuestion.ps1
 . $PSScriptRoot/Public/Invoke-QuickChat.ps1
 . $PSScriptRoot/Public/UnitTesting.ps1
+. $PSScriptRoot/Public/Get-AzOAISecrets.ps1
+. $PSScriptRoot/Public/Set-AzOAISecrets.ps1
 
 $script:EnableUnitTesting = $false
 $script:InvokeOAIUnitTestingData = $null
