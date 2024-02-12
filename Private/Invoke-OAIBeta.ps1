@@ -77,7 +77,7 @@ function Invoke-OAIBeta {
         $script:InvokeOAIUnitTestingData = @{
             Uri                 = $Uri
             Method              = $Method
-            Headers             = $headers
+            Headers             = $headers.Clone()
             Body                = $Body
             ContentType         = $ContentType
             OutFile             = $OutFile
