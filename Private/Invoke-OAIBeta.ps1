@@ -44,11 +44,40 @@ function Invoke-OAIBeta {
         [Switch]$NotOpenAIBeta        
     )        
     
+
+    $headers = @{
+        'OpenAI-Beta'  = 'assistants=v1'     
+        'Content-Type' = $ContentType
+    }
+
     if ($NotOpenAIBeta) {
         $headers.Remove('OpenAI-Beta')
     }
 
-    $headers['Content-Type'] = $ContentType
+    $Provider = Get-OAIProvider
+    $AzOAISecrets = Get-AzOAISecrets
+    switch ($Provider) {
+        'OpenAI' {
+            $headers['Authorization'] = "Bearer $env:OpenAIKey"
+        }
+
+        'AzureOpenAI' {
+            $headers['api-key'] = "$($AzOAISecrets.apiKEY)"
+            
+            if ($null -ne $Body -and $Body.Contains("model") ) {
+                $Body.model = $AzOAISecrets.deploymentName
+            }
+
+            $Uri = $Uri -replace $baseUrl, ''
+            if ($Uri.EndsWith('/')) {
+                $Uri = $Uri.Substring(0, $Uri.Length - 1)
+            }
+            
+            $Uri = "{0}/openai{1}?api-version={2}" -f $AzOAISecrets.apiURI, $Uri, $AzOAISecrets.apiVersion
+            $Uri | Out-Host
+        }
+    }    
+
     $params = @{
         Uri     = $Uri
         Method  = $Method
@@ -68,6 +97,7 @@ function Invoke-OAIBeta {
         $params['OutFile'] = $OutFile
     }
 
+    
     if ($PSVersionTable.PSVersion -ge [Version]'7.4.0') {
         $params['AllowInsecureRedirect'] = $UseInsecureRedirect
     }
@@ -83,6 +113,7 @@ function Invoke-OAIBeta {
             ContentType         = $ContentType
             OutFile             = $OutFile
             UseInsecureRedirect = $UseInsecureRedirect
+            #AllowInsecureRedirect = $params['AllowInsecureRedirect']
             NotOpenAIBeta       = $NotOpenAIBeta
         }        
         return
@@ -92,13 +123,19 @@ function Invoke-OAIBeta {
         Invoke-RestMethod @params
     } 
     catch {
-        $message = $_.ErrorDetails.Message
-        if (Test-JsonReplacement $message -ErrorAction SilentlyContinue) {            
-            $targetError = $message | ConvertFrom-Json
-            $targetError = $targetError.error.message
-        } 
-        else {
-            $targetError = "[{0}] - {1}" -f $Uri, $message
+        if ($Provider -eq 'OpenAI') {
+            $message = $_.ErrorDetails.Message
+            if (Test-JsonReplacement $message -ErrorAction SilentlyContinue) {            
+                $targetError = $message | ConvertFrom-Json
+                $targetError = $targetError.error.message
+            } 
+            else {
+                $targetError = "[{0}] - {1}" -f $Uri, $message
+            }
+        }
+
+        if ($Provider -eq 'AzureOpenAI') {
+            $targetError = $_.Exception.Message
         }
 
         Write-Error $targetError

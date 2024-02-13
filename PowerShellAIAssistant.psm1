@@ -71,10 +71,10 @@ $script:AzOAISecrets = @{
 
 $script:baseUrl = "https://api.openai.com/v1"
 
-$script:headers = @{
-    'OpenAI-Beta'   = 'assistants=v1'
-    'Authorization' = "Bearer $env:OpenAIKey"
-}
+# $script:headers = @{
+#     'OpenAI-Beta'   = 'assistants=v1'
+#     'Authorization' = "Bearer $env:OpenAIKey"
+# }
 
 # Aliases
 Set-Alias goaia Get-OAIAssistant
