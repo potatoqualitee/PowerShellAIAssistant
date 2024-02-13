@@ -95,7 +95,6 @@ function Invoke-OAIBeta {
     if ($OutFile) {
         $params['OutFile'] = $OutFile
     }
-
     
     if ($PSVersionTable.PSVersion -ge [Version]'7.4.0') {
         $params['AllowInsecureRedirect'] = $UseInsecureRedirect
