@@ -73,8 +73,7 @@ function Invoke-OAIBeta {
                 $Uri = $Uri.Substring(0, $Uri.Length - 1)
             }
             
-            $Uri = "{0}/openai{1}?api-version={2}" -f $AzOAISecrets.apiURI, $Uri, $AzOAISecrets.apiVersion
-            $Uri | Out-Host
+            $Uri = "{0}/openai{1}?api-version={2}" -f $AzOAISecrets.apiURI, $Uri, $AzOAISecrets.apiVersion         
         }
     }    
 
