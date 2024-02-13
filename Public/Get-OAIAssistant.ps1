@@ -32,15 +32,10 @@ function Get-OAIAssistant {
         [Switch]$Raw
     )
 
-    $requiredVersion = [version]"7.4.0"    
-    if ($PSVersionTable.PSVersion -lt $requiredVersion) {
-        throw "Get-OAIAssistent requires PowerShell minimum version $requiredVersion. The Invoke-RestMethod switch -AllowInsecureRedirect is not available in earlier versions."
-    }
-
-    $url = $baseUrl + "/assistants/"
+    $url = $baseUrl + "/assistants"
     $Method = 'Get'
 
-    $response = Invoke-OAIBeta -Uri $url -Method $Method -UseInsecureRedirect
+    $response = Invoke-OAIBeta -Uri $url -Method $Method
     
     if ($Raw) {
         return $response
