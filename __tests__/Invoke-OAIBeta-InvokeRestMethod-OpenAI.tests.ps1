@@ -60,8 +60,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
 
             Headers             = $expectedHeaders
 
-            NotOpenAIBeta       = $false
-            UseInsecureRedirect = $false
+            NotOpenAIBeta       = $false            
             OAIProvider         = 'OpenAI'
         }
 
@@ -76,13 +75,12 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
 
         $ExpectedUnitTestingData = @{
             Method              = 'Get'
-            Uri                 = "$expectedBaseUrl/assistants/"
+            Uri                 = "$expectedBaseUrl/assistants"
             OutFile             = $null
             ContentType         = 'application/json'
             Body                = $null
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
-            UseInsecureRedirect = $true
             OAIProvider         = 'OpenAI'
         }
 
@@ -102,8 +100,7 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
             ContentType         = 'application/json'
             Body                = $null
             Headers             = $expectedHeaders
-            NotOpenAIBeta       = $false
-            UseInsecureRedirect = $false
+            NotOpenAIBeta       = $false            
             OAIProvider         = 'OpenAI'
         }
 
@@ -128,7 +125,6 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
             }
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
-            UseInsecureRedirect = $false
             OAIProvider         = 'OpenAI'
         }
 
@@ -153,7 +149,6 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
             }
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
-            UseInsecureRedirect = $false
             OAIProvider         = 'OpenAI'
         }
 
@@ -175,7 +170,6 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
             Body                = $null
             Headers             = $expectedHeaders
             NotOpenAIBeta       = $false
-            UseInsecureRedirect = $false
             OAIProvider         = 'OpenAI'
         }
 
