@@ -20,9 +20,6 @@
 .PARAMETER OutFile
     Specifies the path to save the response content to a file.
 
-.PARAMETER UseInsecureRedirect
-    Allows insecure redirects when set to true.
-
 .PARAMETER NotOpenAIBeta
     If specified, removes the 'OpenAI-Beta' header from the request.
 
@@ -39,8 +36,7 @@ function Invoke-OAIBeta {
         $Method,
         $Body,
         $ContentType = 'application/json',
-        $OutFile,
-        [Switch]$UseInsecureRedirect,
+        $OutFile,        
         [Switch]$NotOpenAIBeta        
     )        
     
@@ -95,10 +91,7 @@ function Invoke-OAIBeta {
     if ($OutFile) {
         $params['OutFile'] = $OutFile
     }
-    
-    if ($PSVersionTable.PSVersion -ge [Version]'7.4.0') {
-        $params['AllowInsecureRedirect'] = $UseInsecureRedirect
-    }
+   
 
     if (Test-IsUnitTestingEnabled) {
         Write-Host "Data saved. Use Get-UnitTestingData to retrieve the data."
@@ -110,8 +103,6 @@ function Invoke-OAIBeta {
             OAIProvider         = Get-OAIProvider            
             ContentType         = $ContentType
             OutFile             = $OutFile
-            UseInsecureRedirect = $UseInsecureRedirect
-            #AllowInsecureRedirect = $params['AllowInsecureRedirect']
             NotOpenAIBeta       = $NotOpenAIBeta
         }        
         return
