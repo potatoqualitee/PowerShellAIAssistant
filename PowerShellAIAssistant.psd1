@@ -77,6 +77,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Set-AzOAISecrets'
         'Set-OAIProvider'
         'Get-OAIProvider'
+        'Reset-OAIProvider'
     )
 
     AliasesToExport   = @(
