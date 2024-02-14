@@ -199,6 +199,4 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
 
         Test-UnitTestingData $UnitTestingData $ExpectedUnitTestingData
     }
-
-
 }
