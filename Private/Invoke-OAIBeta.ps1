@@ -40,7 +40,6 @@ function Invoke-OAIBeta {
         [Switch]$NotOpenAIBeta        
     )        
     
-
     $headers = @{
         'OpenAI-Beta'  = 'assistants=v1'     
         'Content-Type' = $ContentType
