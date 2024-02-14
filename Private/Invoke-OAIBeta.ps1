@@ -69,7 +69,11 @@ function Invoke-OAIBeta {
                 $Uri = $Uri.Substring(0, $Uri.Length - 1)
             }
             
-            $Uri = "{0}/openai{1}?api-version={2}" -f $AzOAISecrets.apiURI, $Uri, $AzOAISecrets.apiVersion         
+            $separator = '?'
+            if ($Uri.Contains('?')) {
+                $separator = '&'
+            }
+            $Uri = "{0}/openai{1}{2}api-version={3}" -f $AzOAISecrets.apiURI, $Uri, $separator, $AzOAISecrets.apiVersion         
         }
     }    
 
@@ -96,14 +100,14 @@ function Invoke-OAIBeta {
     if (Test-IsUnitTestingEnabled) {
         Write-Host "Data saved. Use Get-UnitTestingData to retrieve the data."
         $script:InvokeOAIUnitTestingData = @{
-            Uri                 = $Uri
-            Method              = $Method
-            Headers             = $headers.Clone()
-            Body                = $Body
-            OAIProvider         = Get-OAIProvider            
-            ContentType         = $ContentType
-            OutFile             = $OutFile
-            NotOpenAIBeta       = $NotOpenAIBeta
+            Uri           = $Uri
+            Method        = $Method
+            Headers       = $headers.Clone()
+            Body          = $Body
+            OAIProvider   = Get-OAIProvider            
+            ContentType   = $ContentType
+            OutFile       = $OutFile
+            NotOpenAIBeta = $NotOpenAIBeta
         }        
         return
     }
