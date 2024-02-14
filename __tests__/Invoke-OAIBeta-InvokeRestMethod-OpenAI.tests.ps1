@@ -47,21 +47,21 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
         New-OAIAssistant
 
         $ExpectedUnitTestingData = @{
-            Method              = 'Post'            
-            Uri                 = "$expectedBaseUrl/assistants"            
-            OutFile             = $null
-            ContentType         = 'application/json'
+            Method        = 'Post'            
+            Uri           = "$expectedBaseUrl/assistants"            
+            OutFile       = $null
+            ContentType   = 'application/json'
             
-            Body                = @{
+            Body          = @{
                 instructions = $null
                 name         = $null
                 model        = "gpt-3.5-turbo"
             }
 
-            Headers             = $expectedHeaders
+            Headers       = $expectedHeaders
 
-            NotOpenAIBeta       = $false            
-            OAIProvider         = 'OpenAI'
+            NotOpenAIBeta = $false            
+            OAIProvider   = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData 
@@ -74,14 +74,14 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
         Get-OAIAssistant
 
         $ExpectedUnitTestingData = @{
-            Method              = 'Get'
-            Uri                 = "$expectedBaseUrl/assistants"
-            OutFile             = $null
-            ContentType         = 'application/json'
-            Body                = $null
-            Headers             = $expectedHeaders
-            NotOpenAIBeta       = $false
-            OAIProvider         = 'OpenAI'
+            Method        = 'Get'
+            Uri           = "$expectedBaseUrl/assistants"
+            OutFile       = $null
+            ContentType   = 'application/json'
+            Body          = $null
+            Headers       = $expectedHeaders
+            NotOpenAIBeta = $false
+            OAIProvider   = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -94,14 +94,14 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
         New-OAIThread
 
         $ExpectedUnitTestingData = @{
-            Method              = 'Post'
-            Uri                 = "$expectedBaseUrl/threads"
-            OutFile             = $null
-            ContentType         = 'application/json'
-            Body                = $null
-            Headers             = $expectedHeaders
-            NotOpenAIBeta       = $false            
-            OAIProvider         = 'OpenAI'
+            Method        = 'Post'
+            Uri           = "$expectedBaseUrl/threads"
+            OutFile       = $null
+            ContentType   = 'application/json'
+            Body          = $null
+            Headers       = $expectedHeaders
+            NotOpenAIBeta = $false            
+            OAIProvider   = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -115,17 +115,17 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
         New-OAIMessage -ThreadId $tid -Role user -Content 'what is the capital of France'
 
         $ExpectedUnitTestingData = @{
-            Method              = 'Post'
-            Uri                 = "$expectedBaseUrl/threads/$($tid)/messages"
-            OutFile             = $null
-            ContentType         = 'application/json'
-            Body                = @{
+            Method        = 'Post'
+            Uri           = "$expectedBaseUrl/threads/$($tid)/messages"
+            OutFile       = $null
+            ContentType   = 'application/json'
+            Body          = @{
                 role    = 'user'
                 content = 'what is the capital of France'
             }
-            Headers             = $expectedHeaders
-            NotOpenAIBeta       = $false
-            OAIProvider         = 'OpenAI'
+            Headers       = $expectedHeaders
+            NotOpenAIBeta = $false
+            OAIProvider   = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -140,16 +140,16 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
         New-OAIRun -ThreadId $tid -AssistantId $aid
 
         $ExpectedUnitTestingData = @{
-            Method              = 'Post'
-            Uri                 = "$expectedBaseUrl/threads/$($tid)/runs"
-            OutFile             = $null
-            ContentType         = 'application/json'
-            Body                = @{
+            Method        = 'Post'
+            Uri           = "$expectedBaseUrl/threads/$($tid)/runs"
+            OutFile       = $null
+            ContentType   = 'application/json'
+            Body          = @{
                 assistant_id = $aid
             }
-            Headers             = $expectedHeaders
-            NotOpenAIBeta       = $false
-            OAIProvider         = 'OpenAI'
+            Headers       = $expectedHeaders
+            NotOpenAIBeta = $false
+            OAIProvider   = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -163,14 +163,14 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
         Get-OAIMessage -ThreadId $tid
 
         $ExpectedUnitTestingData = @{
-            Method              = 'Get'
-            Uri                 = "$expectedBaseUrl/threads/$($tid)/messages?limit=20&order=desc"
-            OutFile             = $null
-            ContentType         = 'application/json'
-            Body                = $null
-            Headers             = $expectedHeaders
-            NotOpenAIBeta       = $false
-            OAIProvider         = 'OpenAI'
+            Method        = 'Get'
+            Uri           = "$expectedBaseUrl/threads/$($tid)/messages?limit=20&order=desc"
+            OutFile       = $null
+            ContentType   = 'application/json'
+            Body          = $null
+            Headers       = $expectedHeaders
+            NotOpenAIBeta = $false
+            OAIProvider   = 'OpenAI'
         }
 
         $UnitTestingData = Get-UnitTestingData
@@ -178,5 +178,27 @@ Describe 'Test Invoke-OAIBeta InvokeRestMethod OpenAI Params' -Tag Invoke-OAIBet
 
         Test-UnitTestingData $UnitTestingData $ExpectedUnitTestingData
     }
+
+    It "Should have the expected data after Get-OAIThread is called" {
+        $tid = 1234
+        Get-OAIThread -ThreadId $tid
+
+        $ExpectedUnitTestingData = @{
+            Method        = 'Get'
+            Uri           = "$expectedBaseUrl/threads/$($tid)"
+            OutFile       = $null
+            ContentType   = 'application/json'
+            Body          = $null
+            Headers       = $expectedHeaders
+            NotOpenAIBeta = $false
+            OAIProvider   = 'OpenAI'
+        }
+
+        $UnitTestingData = Get-UnitTestingData
+        $UnitTestingData | Should -Not -BeNullOrEmpty
+
+        Test-UnitTestingData $UnitTestingData $ExpectedUnitTestingData
+    }
+
+
 }
-    
