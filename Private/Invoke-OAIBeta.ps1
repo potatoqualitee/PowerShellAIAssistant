@@ -60,8 +60,10 @@ function Invoke-OAIBeta {
         'AzureOpenAI' {
             $headers['api-key'] = "$($AzOAISecrets.apiKEY)"
             
-            if ($null -ne $Body -and $Body.Contains("model") ) {
-                $Body.model = $AzOAISecrets.deploymentName
+            if ($Body -isnot [System.IO.Stream]) {
+                if ($null -ne $Body -and $Body.Contains("model") ) {
+                    $Body.model = $AzOAISecrets.deploymentName
+                }
             }
 
             $Uri = $Uri -replace $baseUrl, ''
