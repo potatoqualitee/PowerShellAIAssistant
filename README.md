@@ -58,7 +58,7 @@ There is one example and it is in a Polyglot Interactive Notebook titled [Assist
 
 ## Support for Azure OpenAI 
 
-After createing an Azure OpenAI resource, you can use the `PowerShellAIAssistant` module to interact with it. 
+After creating an [Azure OpenAI resource](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal), you can use the `PowerShellAIAssistant` module to interact with it. 
 
 You need to get the following secrets form the Azure Portal and Azure AI Studio - `apiURI`,`apiVersion`,`apiKey`,`deploymentName`.
 
@@ -73,6 +73,10 @@ $secrets = @{
 Set-OAIProvider AzureOpenAI
 Set-AzOAISecrets @secrets
 ```
+
+See: [Simple-Tutor-Azure-OpenAI.ps1](examples/Simple-Tutor-Azure-OpenAI.ps1)
+
+A `Set-OAIProvider` and `Get-OAIProvider` function are available to switch between OpenAI and Azure OpenAI.
 
 ## Features
 
