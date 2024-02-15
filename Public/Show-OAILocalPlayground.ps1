@@ -50,7 +50,12 @@ function Show-OAILocalPlayground {
         New-PodeLockable "assistantList_lock"
         Set-PodeState -Name "assistantList" -Value @()
 
-        Add-PodeWebPage -Name History -ScriptBlock {
+        $assistantList = Get-OAIAssistant
+        Lock-PodeObject -Name "assistantList_lock" -ScriptBlock {
+            Set-PodeState -Name "assistantList" -Value $assistantList
+        }
+
+        Add-PodeWebPage -Name CodeHistory -DisplayName "Code history" -ScriptBlock {
             New-PodeWebCard -Content @(
                 New-PodeWebTextbox -Name "Cmdlets" -Placeholder ((Get-PodeObject -Name "historyList") -join "`n")
             )
