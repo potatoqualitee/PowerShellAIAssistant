@@ -59,6 +59,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Remove-OAIThread'
         'Show-OAIAPIReferenceWebPage'
         'Show-OAIAssistantWebPage'
+        'Show-OAILocalPlayground'
         'Show-OAIPlaygroundWebPage'
         'Submit-OAIMessage'
         'Submit-OAIToolOutputs'
