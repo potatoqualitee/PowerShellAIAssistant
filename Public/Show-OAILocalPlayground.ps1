@@ -5,7 +5,9 @@ Starts a local playground interface that lets you play with OAI
 
 function Show-OAILocalPlayground {
     param(
-        $port = 8080
+        $port = 8080,
+        $threads = 2,
+        [switch]$DisableLaunch
     )
     $script:port = $port
 
@@ -34,7 +36,7 @@ function Show-OAILocalPlayground {
     # Pode.Web needs to be in the global scope for runspaces to access functions
     Import-Module Pode.Web -Scope Global
 
-    Start-PodeServer -StatusPageExceptions Show -Threads 3 {
+    Start-PodeServer -Browse:(-not $DisableLaunch) -StatusPageExceptions Show -Threads $threads {
         $endpoint_param = @{
             Address  = "localhost"
             Port     = $script:port
@@ -62,13 +64,6 @@ function Show-OAILocalPlayground {
             Set-PodeState -Name "assistantList" -Value $assistantList
         }
 
-
-        Add-PodeWebPage -Name Comments -ScriptBlock {
-            New-PodeWebCard -Content @(
-                New-PodeWebComment -Username "My user here" -Message "Test" -TimeStamp (Get-Date) -Icon Lock
-            )
-        }
-
         Add-PodeWebPage -Name CodeHistory -DisplayName "Code history" -ScriptBlock {
             New-PodeWebCard -Content @(
                 New-PodeWebTextbox -Name "Cmdlets" -Multiline -ReadOnly -Value (Get-History).CommandLine
@@ -88,7 +83,7 @@ function Show-OAILocalPlayground {
                     }
                     Move-PodeWebUrl -Url /pages/ChatGPT
                 }
-            )
+            ) -CssStyle @{"max-width" = "800px" }
 
             New-PodeWebCard -Content @(
                 New-PodeWebForm -Name 'Example' -Content @(
