@@ -1,3 +1,13 @@
+<#
+.SYNOPSIS
+    Tests the LLM model.
+
+.DESCRIPTION
+    This function tests the LLM model by checking if the specified model is valid based on the provider.
+    
+.NOTES
+    Used in the ValidateScript attribute of the -Model parameter in multiple functions.
+#>
 function Test-LLMModel {    
     $provider = Get-OAIProvider
     if ($provider -eq 'OpenAI') {
