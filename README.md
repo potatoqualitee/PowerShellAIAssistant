@@ -24,20 +24,12 @@ Welcome to `PowerShell AI Assistant`, a module designed for seamless integration
 
 `PowerShell AI Assistant` is where advanced AI meets PowerShell scripting. With this module, you can create interactive, intelligent scripts and applications that understand and process natural language with ease.
 
-## Requirements
+<!-- ## Requirements
 
 > [!IMPORTANT]
 > `Get-OAIAssistant` requires PowerShell 7.4 or higher. It needs the `AllowInsecureRedirect` parameter, a workaround is being investigated.
 
-If you don't have PowerShell 7.4 or higher, you can use CodeSpaces to run the example. Click the button below to open CodeSpaces.
-
-<!--
-query {
-  repository (name: "powershellaiassistant-prerelease", owner: "dfinke")  {
-        databaseId
-  }
-}
--->
+If you don't have PowerShell 7.4 or higher, you can use CodeSpaces to run the example. Click the button below to open CodeSpaces. -->
 
 <a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=739751034&machine=standardLinux32gb&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=East">
      <img src="https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github"/>
@@ -63,6 +55,28 @@ Install-Module PowerShellAIAssistant -AllowClobber
 ## Examples
 
 There is one example and it is in a Polyglot Interactive Notebook titled [Assistants API overview](examples/Assistants_API_overview.ipynb). This notebook shows how to use the Assistants API to build a simple question answering interaction.
+
+## Support for Azure OpenAI 
+
+After creating an [Azure OpenAI resource](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal), you can use the `PowerShellAIAssistant` module to interact with it. 
+
+You need to get the following secrets form the Azure Portal and Azure AI Studio - `apiURI`,`apiVersion`,`apiKey`,`deploymentName`.
+
+```powershell
+$secrets = @{
+    apiURI         = "<Your Azure OpenAI API URI>"
+    apiVersion     = "<Your Azure OpenAI API Version>"
+    apiKey         = "<Your Azure OpenAI API Key>"
+    deploymentName = "<Your Azure OpenAI Deployment Name>"
+}
+
+Set-OAIProvider AzureOpenAI
+Set-AzOAISecrets @secrets
+```
+
+See: [Simple-Tutor-Azure-OpenAI.ps1](examples/Simple-Tutor-Azure-OpenAI.ps1)
+
+A `Set-OAIProvider` and `Get-OAIProvider` function are available to switch between OpenAI and Azure OpenAI.
 
 ## Features
 
