@@ -57,6 +57,7 @@
 . $PSScriptRoot/Public/Set-OAIProvider.ps1
 . $PSScriptRoot/Public/Get-OAIProvider.ps1
 . $PSScriptRoot/Public/Reset-OAIProvider.ps1
+. $PSScriptRoot/Public/Test-LLMModel.ps1
 
 $script:EnableUnitTesting = $false
 $script:InvokeOAIUnitTestingData = $null
