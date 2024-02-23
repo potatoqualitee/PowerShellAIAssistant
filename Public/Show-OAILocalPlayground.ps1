@@ -222,12 +222,13 @@ function Show-OAILocalPlayground {
         }
         Add-PodeEndpoint @endpoint_param
 
+        # Enable sessions so that user data can be stored server side easily
         Enable-PodeSessionMiddleware -Duration ([int]::MaxValue)
 
         Use-PodeWebTemplates -Title SampleApp -Theme Dark
 
 
-        # Want the assistants and history to be accessible regardless of session
+        # You want the assistants and history to be accessible regardless of session
         New-PodeLockable "historyList_lock"
         Set-PodeState -Name "historyList" -Value @()
         New-PodeLockable "assistantList_lock"
@@ -247,7 +248,11 @@ function Show-OAILocalPlayground {
             )
         }
 
+        # This page will create a conversation with an assistant, but does not use the boilerplate cmdlets
+        # included in the PowerShellAIAssistant module like New-OAIThreadQuery because it doesn't save any
+        # actual calls to remote resources and doesn't as easily allow for follow up messages
         Add-PodeWebPage -Name ChatGPT -ScriptBlock {
+            # Provide an all-in-one interface to make it as easy as possible to stay on this page
             New-PodeWebCard -Content @(
                 New-PodeWebButton -Name "Update assistant list" -ScriptBlock {
                     $assistantList = Get-OAIAssistant
@@ -281,6 +286,7 @@ function Show-OAILocalPlayground {
                     else {
                         $assistantID = $WebEvent.Data['Assistant']
                     }
+
                     if ($WebEvent.Data['Thread'] -eq "New...") {
                         $WebEvent.Session.Data.Thread = New-OAIThread
                         $WebEvent.Session.Data.Threads = @($WebEvent.Session.Data.Threads) + $WebEvent.Session.Data.Thread | Sort-Object -Unique -Property created_at
