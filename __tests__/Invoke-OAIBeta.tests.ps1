@@ -19,9 +19,6 @@ Describe 'Invoke-OAIBeta' -Tag Invoke-OAIBeta {
 
         $actual.Parameters.Keys.Contains('OutFile') | Should -Be $true
 
-        $actual.Parameters.Keys.Contains('UseInsecureRedirect') | Should -Be $true
-        $actual.Parameters['UseInsecureRedirect'].SwitchParameter | Should -Be $true
-
         $actual.Parameters.Keys.Contains('NotOpenAIBeta') | Should -Be $true
         $actual.Parameters['NotOpenAIBeta'].SwitchParameter | Should -Be $true
     }

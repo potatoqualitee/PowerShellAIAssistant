@@ -52,13 +52,32 @@
 . $PSScriptRoot/Public/ConvertTo-OAIAssistant.ps1
 . $PSScriptRoot/Public/Invoke-SimpleQuestion.ps1
 . $PSScriptRoot/Public/Invoke-QuickChat.ps1
+. $PSScriptRoot/Public/UnitTesting.ps1
+. $PSScriptRoot/Public/Get-AzOAISecrets.ps1
+. $PSScriptRoot/Public/Set-AzOAISecrets.ps1
+. $PSScriptRoot/Public/Set-OAIProvider.ps1
+. $PSScriptRoot/Public/Get-OAIProvider.ps1
+. $PSScriptRoot/Public/Reset-OAIProvider.ps1
+. $PSScriptRoot/Public/Test-LLMModel.ps1
+
+$script:EnableUnitTesting = $false
+$script:InvokeOAIUnitTestingData = $null
+
+$script:OAIProvider = 'OpenAI'
+
+$script:AzOAISecrets = @{
+    apiURI         = $null
+    apiKEY         = $null
+    apiVersion     = $null
+    deploymentName = $null
+}
 
 $script:baseUrl = "https://api.openai.com/v1"
 
-$script:headers = @{
-    'OpenAI-Beta'   = 'assistants=v1'
-    'Authorization' = "Bearer $env:OpenAIKey"
-}
+# $script:headers = @{
+#     'OpenAI-Beta'   = 'assistants=v1'
+#     'Authorization' = "Bearer $env:OpenAIKey"
+# }
 
 # Aliases
 Set-Alias goaia Get-OAIAssistant

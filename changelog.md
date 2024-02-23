@@ -1,5 +1,12 @@
-# v0.1.8
+# v0.2.1
 
+- Refactor Get-OAIRun function and add pipeline parameter and alias
+
+# v0.2.0
+
+- Supports Azure OpenAI AI Assistant instances
+    - **Not** the previous Azure OpenAI instances
+- **Not** pinned to PowerShell 7.4.0 and greater
 - Add another model for `Update-OAIAssistant` - `gpt-4-turbo-preview`
 
 # v0.1.7

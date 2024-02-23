@@ -1,6 +1,6 @@
 @{
     RootModule        = 'PowerShellAIAssistant.psm1'
-    ModuleVersion     = '0.1.8'
+    ModuleVersion     = '0.2.0'
     GUID              = '23da7dfe-f77e-4ca6-8b69-5e69603a73ca'
     Author            = 'Douglas Finke'
     CompanyName       = 'Doug Finke'
@@ -70,6 +70,16 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'ConvertTo-OAIAssistant'
         'Invoke-SimpleQuestion'
         'Invoke-QuickChat'
+        'Enable-UnitTesting'
+        'Disable-UnitTesting'
+        'Get-UnitTestingStatus'
+        'Get-UnitTestingData'
+        'Get-AzOAISecrets'
+        'Set-AzOAISecrets'
+        'Set-OAIProvider'
+        'Get-OAIProvider'
+        'Reset-OAIProvider'
+        'Test-LLMModel'
     )
 
     AliasesToExport   = @(

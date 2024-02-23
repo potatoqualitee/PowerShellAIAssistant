@@ -30,7 +30,8 @@
 function Get-OAIRun {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [Alias('thread_id')]
         $threadId,
         $limit = 20,
         [ValidateSet('asc', 'desc')]
@@ -39,23 +40,25 @@ function Get-OAIRun {
         $before        
     )
 
-    $url = $baseUrl + "/threads/$threadId/runs"
-    $Method = 'Get'
+    Process {
+        $url = $baseUrl + "/threads/$threadId/runs"
+        $Method = 'Get'
 
-    $urlParams = @()
-    if ($limit) {
-        $urlParams += "limit=$limit"
-    }
-    if ($order) {
-        $urlParams += "order=$order"
-    }
-    if ($after) {
-        $urlParams += "after=$after"
-    }
-    if ($before) {
-        $urlParams += "before=$before"
-    }
+        $urlParams = @()
+        if ($limit) {
+            $urlParams += "limit=$limit"
+        }
+        if ($order) {
+            $urlParams += "order=$order"
+        }
+        if ($after) {
+            $urlParams += "after=$after"
+        }
+        if ($before) {
+            $urlParams += "before=$before"
+        }
 
-    $urlParams = "?" + ($urlParams -join '&')
-    Invoke-OAIBeta -Uri ($url + $urlParams) -Method $Method
+        $urlParams = "?" + ($urlParams -join '&')
+        Invoke-OAIBeta -Uri ($url + $urlParams) -Method $Method
+    }
 }

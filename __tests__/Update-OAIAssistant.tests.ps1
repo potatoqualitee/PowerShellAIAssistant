@@ -11,12 +11,12 @@ Describe 'Update-OAIAssistant' -Tag Update-OAIAssistant {
         $actual.Parameters.Keys.Contains('Id') | Should -Be $true
         $actual.Parameters['Id'].Attributes.ValueFromPipelineByPropertyName | Should -Be $true
 
-        $actual.Parameters.Keys.Contains('Model') | Should -Be $true        
-
-        $validateSet = $actual.Parameters.Model.Attributes | Where-Object { $_ -is [System.Management.Automation.ValidateSetAttribute] }
-
-        $validateSet | Should -Not -BeNullOrEmpty
-        $validateSet[0].ValidValues | Should -Be @('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-turbo-preview','gpt-4-1106-preview', 'gpt-3.5-turbo-1106')
+        $actual.Parameters.Keys.Contains('Model') | Should -Be $true
+        
+        $validateScript = $actual.Parameters.model.Attributes | Where-Object { $_ -is [System.Management.Automation.ValidateScriptAttribute] }
+        $validateScript | Should -Not -BeNullOrEmpty
+        $scriptBlock = $validateScript.ScriptBlock
+        $scriptBlock.ToString().Trim() | Should -BeExactly 'Test-LLMModel'
 
         $actual.Parameters.Keys.Contains('Name') | Should -Be $true
         $actual.Parameters.Keys.Contains('Description') | Should -Be $true

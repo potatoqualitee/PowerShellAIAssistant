@@ -20,9 +20,6 @@
 .PARAMETER OutFile
     Specifies the path to save the response content to a file.
 
-.PARAMETER UseInsecureRedirect
-    Allows insecure redirects when set to true.
-
 .PARAMETER NotOpenAIBeta
     If specified, removes the 'OpenAI-Beta' header from the request.
 
@@ -39,16 +36,48 @@ function Invoke-OAIBeta {
         $Method,
         $Body,
         $ContentType = 'application/json',
-        $OutFile,
-        [Switch]$UseInsecureRedirect,
+        $OutFile,        
         [Switch]$NotOpenAIBeta        
     )        
     
+    $headers = @{
+        'OpenAI-Beta'  = 'assistants=v1'     
+        'Content-Type' = $ContentType
+    }
+
     if ($NotOpenAIBeta) {
         $headers.Remove('OpenAI-Beta')
     }
 
-    $headers['Content-Type'] = $ContentType
+    $Provider = Get-OAIProvider
+    $AzOAISecrets = Get-AzOAISecrets
+    switch ($Provider) {
+        'OpenAI' {
+            $headers['Authorization'] = "Bearer $env:OpenAIKey"
+        }
+
+        'AzureOpenAI' {
+            $headers['api-key'] = "$($AzOAISecrets.apiKEY)"
+            
+            if ($Body -isnot [System.IO.Stream]) {
+                if ($null -ne $Body -and $Body.Contains("model") ) {
+                    $Body.model = $AzOAISecrets.deploymentName
+                }
+            }
+
+            $Uri = $Uri -replace $baseUrl, ''
+            if ($Uri.EndsWith('/')) {
+                $Uri = $Uri.Substring(0, $Uri.Length - 1)
+            }
+            
+            $separator = '?'
+            if ($Uri.Contains('?')) {
+                $separator = '&'
+            }
+            $Uri = "{0}/openai{1}{2}api-version={3}" -f $AzOAISecrets.apiURI, $Uri, $separator, $AzOAISecrets.apiVersion         
+        }
+    }    
+
     $params = @{
         Uri     = $Uri
         Method  = $Method
@@ -67,22 +96,40 @@ function Invoke-OAIBeta {
     if ($OutFile) {
         $params['OutFile'] = $OutFile
     }
+   
+
+    if (Test-IsUnitTestingEnabled) {
+        Write-Host "Data saved. Use Get-UnitTestingData to retrieve the data."
+        $script:InvokeOAIUnitTestingData = @{
+            Uri           = $Uri
+            Method        = $Method
+            Headers       = $headers.Clone()
+            Body          = $Body
+            OAIProvider   = Get-OAIProvider            
+            ContentType   = $ContentType
+            OutFile       = $OutFile
+            NotOpenAIBeta = $NotOpenAIBeta
+        }        
+        return
+    }
 
     try {
-        if ($PSVersionTable.PSVersion -ge [Version]'7.4.0') {
-            $params['AllowInsecureRedirect'] = $UseInsecureRedirect
-        }
-
         Invoke-RestMethod @params
     } 
     catch {
-        $message = $_.ErrorDetails.Message
-        if (Test-JsonReplacement $message -ErrorAction SilentlyContinue) {            
-            $targetError = $message | ConvertFrom-Json
-            $targetError = $targetError.error.message
-        } 
-        else {
-            $targetError = "[{0}] - {1}" -f $Uri, $message
+        if ($Provider -eq 'OpenAI') {
+            $message = $_.ErrorDetails.Message
+            if (Test-JsonReplacement $message -ErrorAction SilentlyContinue) {            
+                $targetError = $message | ConvertFrom-Json
+                $targetError = $targetError.error.message
+            } 
+            else {
+                $targetError = "[{0}] - {1}" -f $Uri, $message
+            }
+        }
+
+        if ($Provider -eq 'AzureOpenAI') {
+            $targetError = $_.Exception.Message
         }
 
         Write-Error $targetError
