@@ -5,8 +5,8 @@ Starts a local playground interface that lets you play with OAI
 
 function Show-OAILocalPlayground {
     param(
-        $port = 8080,
-        $threads = 2,
+        $Port = 8080,
+        $Threads = 2,
         [switch]$DisableLaunch
     )
     $script:port = $port
@@ -213,10 +213,10 @@ function Show-OAILocalPlayground {
     # Pode.Web needs to be in the global scope for runspaces to access functions
     Import-Module Pode.Web -Scope Global
 
-    Start-PodeServer -Browse:(-not $DisableLaunch) -StatusPageExceptions Show -Threads $threads {
+    Start-PodeServer -Browse:(-not $DisableLaunch) -StatusPageExceptions Show -Threads $Threads {
         $endpoint_param = @{
             Address  = "localhost"
-            Port     = $script:port
+            Port     = $script:Port
             Protocol = "Http"
             Name     = "Local Playground"
         }
