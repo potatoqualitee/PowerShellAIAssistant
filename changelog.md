@@ -1,5 +1,6 @@
 # v0.2.1
 
+- Thank you to [Devin](https://github.com/Szeraax) for `Show-OAILocalPlayground`. A Pode Web App that allows you to interact with ChatGPT with the module in a web page.
 - Refactor Get-OAIRun function and add pipeline parameter and alias
 
 # v0.2.0
