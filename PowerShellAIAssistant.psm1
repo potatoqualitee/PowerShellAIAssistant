@@ -41,6 +41,7 @@
 . $PSScriptRoot/Public/Remove-OAIThread.ps1
 . $PSScriptRoot/Public/Show-OAIAPIReferenceWebPage.ps1
 . $PSScriptRoot/Public/Show-OAIAssistantWebPage.ps1
+. $PSScriptRoot/Public/Show-OAILocalPlayground.ps1
 . $PSScriptRoot/Public/Show-OAIPlaygroundWebPage.ps1
 . $PSScriptRoot/Public/Submit-OAIMessage.ps1
 . $PSScriptRoot/Public/Submit-OAIToolOutputs.ps1

@@ -1,6 +1,6 @@
 @{
     RootModule        = 'PowerShellAIAssistant.psm1'
-    ModuleVersion     = '0.2.0'
+    ModuleVersion     = '0.2.1'
     GUID              = '23da7dfe-f77e-4ca6-8b69-5e69603a73ca'
     Author            = 'Douglas Finke'
     CompanyName       = 'Doug Finke'
@@ -59,6 +59,7 @@ PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leverag
         'Remove-OAIThread'
         'Show-OAIAPIReferenceWebPage'
         'Show-OAIAssistantWebPage'
+        'Show-OAILocalPlayground'
         'Show-OAIPlaygroundWebPage'
         'Submit-OAIMessage'
         'Submit-OAIToolOutputs'
