@@ -1,36 +1,39 @@
 <#
 .SYNOPSIS
-Retrieves the OpenAI function call specification for the specified PowerShell functions.
+Retrieves the OpenAI function call specification for a given function.
 
 .DESCRIPTION
-The Get-OAIFunctionCallSpec function retrieves the OpenAI function call specification for the specified PowerShell functions. It takes an array of function names as input and returns the function call specifications in a tool-specific format.
+The Get-OAIFunctionCallSpec function retrieves the OpenAI function call specification for a given function. It takes a FunctionInfo object as input and returns the function call specification in a tool-specific format.
 
-.PARAMETER functionNames
-Specifies an array of function names for which the function call specifications need to be retrieved.
+.PARAMETER functionInfo
+Specifies the FunctionInfo object representing the function for which to retrieve the function call specification.
 
 .EXAMPLE
-Get-OAIFunctionCallSpec -functionNames "Get-Process", "Get-Service"
-This example retrieves the function call specifications for the "Get-Process" and "Get-Service" PowerShell functions.
+Function Test-Func {param($x)}; $functionInfo = Get-Command -Name "Test-Func"
+Get-OAIFunctionCallSpec -functionInfo $functionInfo
+
+This example retrieves the function call specification for the "Get-Process" function.
+
+.INPUTS
+[System.Management.Automation.FunctionInfo]
+Accepts a FunctionInfo object representing the function for which to retrieve the function call specification.
+
+.OUTPUTS
+[System.Object]
+Returns the function call specification in a tool-specific format.
 #>
 function Get-OAIFunctionCallSpec {
     [CmdletBinding()]
     param(
-        [string[]]$functionNames
+        [System.Management.Automation.FunctionInfo]$functionInfo
     )
 
-    if($null -eq $functionNames) {
+    if ($null -eq $functionInfo) {
         return
     }
 
-    $functions = foreach ($function in $functionNames) {
-        $fn = Get-Command $function -ErrorAction SilentlyContinue
-
-        if (-not $fn) {
-            Write-Warning "Function $function does not exist"
-            continue
-        }
-        
-        $fnd = Get-FunctionDefinition $fn
+    $functions = foreach ($function in $functionInfo) {
+        $fnd = Get-FunctionDefinition $function
         ConvertTo-OpenAIFunctionSpec $fnd -Raw
     }
 
