@@ -1,3 +1,5 @@
+#Import-Module "$PSScriptRoot\..\PowerShellAIAssistant.psd1" -Force
+
 # Define a function to get the payment status
 function Get-PaymentStatus {
     param(
@@ -19,10 +21,10 @@ function Get-PaymentDate {
 }
 
 # Get the function call specification for the Get-PaymentStatus function
-$fcs1 = Get-OAIFunctionCallSpec 'Get-PaymentStatus'
+$fcs1 = Get-OAIFunctionCallSpec (Get-Command Get-PaymentStatus)
 
 # Get the function call specification for the Get-PaymentDate function
-$fcs2 = Get-OAIFunctionCallSpec 'Get-PaymentDate'
+$fcs2 = Get-OAIFunctionCallSpec (Get-Command Get-PaymentDate)
 
 # Create a new AI assistant named 'Payment Function' with the specified tools and model
 New-OAIAssistant 'Payment Function' -Tools $fcs1, $fcs2, (Enable-OAIRetrievalTool), (Enable-OAICodeInterpreter) -Model gpt-4-turbo-preview
