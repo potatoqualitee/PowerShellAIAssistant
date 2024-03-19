@@ -19,11 +19,16 @@ Describe 'New-OAIRun' -Tag New-OAIRun {
         $actual.Parameters.AssistantId.Aliases.Contains('id') | Should -Be $true
 
         $actual.Parameters.Keys.Contains('Model') | Should -Be $true
-        
-        $validateScript = $actual.Parameters.model.Attributes | Where-Object { $_ -is [System.Management.Automation.ValidateScriptAttribute] }
-        $validateScript | Should -Not -BeNullOrEmpty
-        $scriptBlock = $validateScript.ScriptBlock
-        $scriptBlock.ToString().Trim() | Should -BeExactly 'Test-LLMModel'
+        $ValidateSet = $actual.Parameters.model.Attributes | Where-Object { $_ -is [System.Management.Automation.ValidateSetAttribute] }
+        $ValidateSet | Should -Not -BeNullOrEmpty
+
+        $validValues = $actual.Parameters['model'].Attributes.ValidValues
+        $validValues | Should -Be @('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-turbo-preview', 'gpt-4-1106-preview', 'gpt-3.5-turbo-1106')
+
+        # $validateScript = $actual.Parameters.model.Attributes | Where-Object { $_ -is [System.Management.Automation.ValidateScriptAttribute] }
+        # $validateScript | Should -Not -BeNullOrEmpty
+        # $scriptBlock = $validateScript.ScriptBlock
+        # $scriptBlock.ToString().Trim() | Should -BeExactly 'Test-LLMModel'
 
         $actual.Parameters.Keys.Contains('Instructions') | Should -Be $true
         $actual.Parameters.Keys.Contains('Tools') | Should -Be $true
