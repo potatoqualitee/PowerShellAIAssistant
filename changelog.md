@@ -1,3 +1,10 @@
+# v0.2.2
+
+- Added `Invoke-AIExplain` alias `explain`.
+    - Reads the last PS command executed in the console
+    - You can also use `-AsBullets` for a bullet list
+    - If `glow` is installed, it will take the markdown output and display really nicely
+
 # No release
 
 - Added Retrieval Augmented Generation [RAG example](examples/RAG-Examples/tryRAG.ps1)
