@@ -8,6 +8,7 @@
 # No release
 
 - Added Retrieval Augmented Generation [RAG example](examples/RAG-Examples/tryRAG.ps1)
+
 # v0.2.1
 
 - Added `Get-OAIFunctionCallSpec` - Retrieves the OpenAI function call specification for the specified PowerShell functions.
