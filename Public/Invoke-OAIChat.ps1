@@ -8,6 +8,9 @@ The Invoke-OAIChat function is used to interact with an AI chat assistant. It ta
 .PARAMETER UserInput
 Specifies the user input to be processed by the AI chat assistant.
 
+.PARAMETER Instructions
+Specifies the instructions to be processed by the AI chat assistant.
+
 .PARAMETER Model
 Specifies the model to be used by the AI chat assistant. Valid values are 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', and 'gpt-3.5-turbo-1106'. The default value is 'gpt-3.5-turbo'.
 
@@ -19,7 +22,7 @@ Invokes the AI chat assistant with the specified user input and returns the assi
 'show even numbers' | ai -Instructions 'use powershell, just code, no explanation'
 
 .EXAMPLE
-git status | ai 'write a detailed commit message'
+git status | ai -Instructions 'write a detailed commit message'
 
 .INPUTS
 System.String
@@ -33,11 +36,10 @@ This function requires the New-OAIAssistant, New-OAIThreadQuery, Wait-OAIOnRun, 
 function Invoke-OAIChat {
     [CmdletBinding()]
     param(
-        $Instructions,
-        [Parameter(ValueFromPipeline)]
-        $UserInput,        
-        [ValidateSet('gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', 'gpt-3.5-turbo-1106')]
-        $model = 'gpt-3.5-turbo'
+        [Parameter(ValueFromPipeline, Position = 0, ValueFromRemainingArguments)]
+        [string[]]$UserInput,
+        [string]$Instructions,
+        [string]$Model = 'gpt-3.5-turbo'
     )
 
     Begin {
@@ -51,7 +53,7 @@ function Invoke-OAIChat {
             $Instructions = 'You are a helpful assistant. Please answer questions concisely.'
         }
         $assistantParams["instructions"] = $Instructions
-        $assistantParams["model"] = $model
+        $assistantParams["model"] = $Model
 
         $assistant = New-OAIAssistant @assistantParams
 
@@ -59,12 +61,12 @@ function Invoke-OAIChat {
     }
 
     Process {
-        $lines += $UserInput                
+        $lines += "$UserInput"
     }
     
     End {
         $prompt = ($lines | Out-String).Trim()
-
+        
         $queryResult = New-OAIThreadQuery -UserInput $prompt -Assistant $assistant 
         $null = Wait-OAIOnRun -Run $queryResult.Run -Thread $queryResult.Thread
         $messages = Get-OAIMessage -ThreadId $queryResult.Thread.Id
