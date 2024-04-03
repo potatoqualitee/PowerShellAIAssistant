@@ -82,6 +82,29 @@ $script:baseUrl = "https://api.openai.com/v1"
 #     'Authorization' = "Bearer $env:OpenAIKey"
 # }
 
+$scriptBlock = {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
+    try {
+        $models = (Invoke-OAIBeta -Uri "$script:baseUrl/models" -Method GET -ErrorAction Stop).data.id
+    } catch {
+        $models = 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-1106-preview', 'gpt-4-turbo-preview', 'gpt-3.5-turbo-1106'
+    }
+
+    $models | Where-Object {
+        $_ -like "$wordToComplete*"
+    } | ForEach-Object {
+        "'$_'"
+    }
+}
+
+$parms = @{
+    ParameterName = 'model'
+    CommandName = 'Invoke-OAIChat', 'Update-OAIAssistant', 'New-OAIRun', 'New-OAIAssistant'
+    ScriptBlock = $scriptBlock
+}
+
+Register-ArgumentCompleter @parms
+
 # Aliases
 Set-Alias goaia Get-OAIAssistant
 Set-Alias roaia Remove-OAIAssistant

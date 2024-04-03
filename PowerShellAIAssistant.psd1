@@ -10,6 +10,9 @@
 PowerShellAIAssistant integrates OpenAI's AI Assistants into PowerShell, leveraging advanced AI capabilities in your PowerShell scripts for dynamic, intelligent automation and data processing
 '@
 
+    # This module uses Invoke-RestMethod, which was introduced in PSv3
+    PowerShellVersion = '3.0'
+
     # Modules that must be imported into the global environment prior to importing this module
     RequiredModules   = @()
 
