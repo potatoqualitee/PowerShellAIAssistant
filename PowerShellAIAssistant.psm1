@@ -68,6 +68,33 @@ $script:InvokeOAIUnitTestingData = $null
 
 $script:OAIProvider = 'OpenAI'
 
+# add proxy support
+if ($true -notin $IsLinux, $IsMacOs -and -not $env:https_proxy) {
+    $regproxy = Get-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
+    $proxy = $regproxy.ProxyServer
+    $proxyEnable = $regproxy.ProxyEnable
+}
+
+if ($env:https_proxy) {
+    $proxy = $env:https_proxy
+    $proxyEnable = $true
+}
+
+$existingProxy =([System.Net.Webrequest]::DefaultWebProxy).Address
+
+if ($proxy -and $proxyEnable -and -not $existingProxy) {
+    [System.Net.Webrequest]::DefaultWebProxy = New-object System.Net.WebProxy $proxy
+    [System.Net.Webrequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
+}
+
+# Preempt TLS issues in Invoke-WebRequest and Invoke-RestMethod
+$currentVersionTls = [Net.ServicePointManager]::SecurityProtocol
+$currentSupportableTls = [Math]::Max($currentVersionTls.value__, [Net.SecurityProtocolType]::Tls.value__)
+$availableTls = [enum]::GetValues('Net.SecurityProtocolType') | Where-Object { $_ -gt $currentSupportableTls }
+$availableTls | ForEach-Object {
+    [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor $_
+}
+
 $script:AzOAISecrets = @{
     apiURI         = $null
     apiKEY         = $null
