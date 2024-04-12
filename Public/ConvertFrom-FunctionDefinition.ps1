@@ -14,8 +14,14 @@ function ConvertFrom-FunctionDefinition {
 
     This example converts the Get-ChildItem function to an OpenAI function specification.
 
+    .EXAMPLE
+    PS C:\> Get-Command Get-ChildItem | ConvertFrom-FunctionDefinition
+
+    This example converts the Get-ChildItem function to an OpenAI function specification, this time using piping.
+
     #>
     param (
+        [Parameter(ValueFromPipeline)]
         [System.Management.Automation.CommandInfo[]]$FunctionInfo
     )
     
