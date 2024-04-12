@@ -34,9 +34,14 @@ function ConvertTo-OpenAIFunctionSpec {
     $functionSpec = @()
     foreach ($function in $functions) {
         $descriptions = Get-OpenAISpecDescriptions $function.Body.extent.text
-
+        $help = $function.GetHelpContent()
+        
         if ($null -eq $descriptions.FunctionDescription) {
-            $targetDescription = 'not supplied'
+            if ($help.Description) {
+                $targetDescription = $help.Description
+            } else {
+                $targetDescription = 'not supplied'
+            }
         }
         else {
             $targetDescription = $descriptions.FunctionDescription
@@ -63,7 +68,13 @@ function ConvertTo-OpenAIFunctionSpec {
             }
 
             if ($null -eq $descriptions.ParameterDescription.$parameterName) {
-                $targetDescription = 'not supplied'
+                $upperCase = $parameterName.ToUpper()
+                $paramHelp = $help.Parameters[$upperCase]
+                if ($paramHelp) {
+                    $targetDescription = $paramHelp
+                } else {
+                    $targetDescription = 'not supplied'
+                }
             }
             else {
                 $targetDescription = $descriptions.ParameterDescription.$parameterName
