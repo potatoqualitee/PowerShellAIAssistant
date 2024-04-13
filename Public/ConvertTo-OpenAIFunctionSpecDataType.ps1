@@ -21,9 +21,24 @@ function ConvertTo-OpenAIFunctionSpecDataType {
     [CmdletBinding()]
     param($targetType)
 
-    switch ($targetType) {
-        { $_ -match 'int32|decimal|float|single|int' } { return 'number' }
-        { $_ -match 'switchparameter|bool|boolean'} { return 'boolean' }
-        default { return $targetType }
+    switch -Regex ($targetType) {
+        'int32|int64|short|long|byte|decimal|double|float|single' {
+            return 'number'
+        }
+        'switchparameter|bool|boolean' {
+            return 'boolean'
+        }
+        'pscredential|hashtable|object|psobject|adsi' {
+            return 'object'
+        }
+        'string|char|regex|securestring|timespan|datetime|datetimeoffset|uri|ipaddress|mailaddress|pattern|wildcard|scriptblock|uniqueid|guid|byte\[\]|biginteger|securestring|xml|commandtype' {
+            return 'string'
+        }
+        '.*\[\]$' {
+            return 'array'
+        }
+        default {
+            return 'string'
+        }
     }
 }
