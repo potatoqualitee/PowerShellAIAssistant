@@ -22,7 +22,7 @@ function ConvertTo-OpenAIFunctionSpecDataType {
     param($targetType)
 
     switch -Regex ($targetType) {
-        'int32|int64|short|long|byte|decimal|double|float|single' {
+        'int|int32|int64|short|long|byte|decimal|double|float|single' {
             return 'number'
         }
         'switchparameter|bool|boolean' {
