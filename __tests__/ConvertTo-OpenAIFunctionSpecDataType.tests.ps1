@@ -1,4 +1,4 @@
-Describe "ConvertTo-OpenAIFunctionSpecDataType" {
+Describe "ConvertTo-OpenAIFunctionSpecDataType" -Tag ConvertTo-OpenAIFunctionSpecDataType {
     BeforeAll {
         Import-Module "$PSScriptRoot/../PowerShellAIAssistant.psd1" -Force
     }
