@@ -18,7 +18,7 @@ Describe 'Convert To Function Spec' -Tags ConvertToFunctionSpec {
     It 'Test ConvertFrom-Definition has correct parameters' {
         $actual = Get-Command ConvertFrom-FunctionDefinition -ErrorAction SilentlyContinue
 
-        $actual.Parameters.Keys | Should -Be @('FunctionInfo')
+        $actual.Parameters.Keys | Where-Object { $PSItem -notin [System.Management.Automation.PSCmdlet]::CommonParameters } | Should -Be @('FunctionInfo')
 
         $actual.Parameters['FunctionInfo'].ParameterType.Name | Should -Be 'CommandInfo[]'
     }
