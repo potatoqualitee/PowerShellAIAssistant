@@ -20,6 +20,7 @@ function ConvertFrom-FunctionDefinition {
     This example converts the Get-ChildItem function to an OpenAI function specification, this time using piping.
 
     #>
+    [CmdletBinding()]
     param (
         [Parameter(ValueFromPipeline)]
         [System.Management.Automation.CommandInfo[]]$FunctionInfo
